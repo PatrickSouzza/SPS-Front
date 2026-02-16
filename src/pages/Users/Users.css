@@ -1,0 +1,73 @@
+.users-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+    position: relative;
+  }
+  
+  .users-card {
+    width: 1000px;
+    background-color: white;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    text-align: center;
+  }
+  
+  .users-card h1 {
+    margin-bottom: 25px;
+    color: #333;
+  }
+  
+  .users-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .users-table th,
+  .users-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .users-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .users-table td button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+    margin-right: 5px;
+  }
+  
+  .users-table td button:first-child {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .users-table td button:first-child:hover {
+    background-color: #45a049;
+  }
+  
+  .users-table td .delete-btn {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .users-table td .delete-btn:hover {
+    background-color: #d32f2f;
+  }
+  
+  .error {
+    color: red;
+    font-weight: bold;
+    margin-top: 15px;
+  }
+  

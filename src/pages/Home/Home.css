@@ -1,0 +1,76 @@
+.home-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.logo{
+  background-color: #0C0068;
+  width: 50%;
+  justify-self: center;
+  border-radius: 10px;
+}
+
+.home-card {
+  background-color: white;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  width: 300px;
+}
+
+.home-card .logo {
+  margin-bottom: 20px;
+}
+
+.home-card .logo img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+}
+
+.home-card h1 {
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.button-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.button-list button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; 
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.button-list button:not(.logout-btn) {
+  background-color: #4caf50;
+  color: white;
+}
+
+.button-list button:not(.logout-btn):hover {
+  background-color: #45a049;
+}
+
+.logout-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.logout-btn:hover {
+  background-color: #d32f2f;
+}
