@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import UserService from "../../services/UserService";
 import HomeButton from "../../components/ButtonHome";
 import './UserCreate.css';
+import { useContext } from "react";
+import { LoaderContext } from "../../contexts/LoaderContext";
 
 export default function CreateUser() {
   const navigate = useNavigate();
@@ -11,6 +13,8 @@ export default function CreateUser() {
   const [role, setRole] = useState("user");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const { showLoader, hideLoader } = useContext(LoaderContext); 
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,6 +26,7 @@ export default function CreateUser() {
     }
 
     try {
+      showLoader();
       await UserService.create({ name, email, type: role, password });
       navigate("/users");
     } catch (err) {
@@ -31,6 +36,8 @@ export default function CreateUser() {
       } else {
         setError(err.response?.data?.message || "Erro ao criar usuário");
       }
+    } finally {
+      hideLoader();
     }
   };
 

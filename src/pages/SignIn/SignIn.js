@@ -3,21 +3,28 @@ import { useNavigate } from "react-router-dom";
 import Input from "../../components/input";
 import { AuthService } from "../../services/AuthService";
 import './SignIn.css';
+import { useContext } from "react";
+import { LoaderContext } from "../../contexts/LoaderContext";
 
 export default function Login() {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const { showLoader, hideLoader } = useContext(LoaderContext);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     try {
+      showLoader();
       await AuthService.login(username, password);
       navigate('/');
     } catch (err) {
       setError(err.response?.data?.message || 'Erro no login');
+    } finally {
+      hideLoader();
     }
   };
 

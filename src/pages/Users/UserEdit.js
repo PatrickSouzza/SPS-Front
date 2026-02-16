@@ -3,6 +3,8 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import UserService from "../../services/UserService";
 import HomeButton from "../../components/ButtonHome";
 import './UserCreate.css';
+import { useContext } from "react";
+import { LoaderContext } from "../../contexts/LoaderContext";
 
 export function userLoader({ params }) {
   return { userId: params.userId };
@@ -17,7 +19,8 @@ export default function EditUser() {
   const [role, setRole] = useState("user");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
+  const { showLoader, hideLoader } = useContext(LoaderContext);
+  
   useEffect(() => {
     async function loadUser() {
       setError("");
@@ -45,6 +48,7 @@ export default function EditUser() {
     }
 
     try {
+      showLoader();
       await UserService.update(userId, { name, email, type: role, password });
       navigate("/users");
     } catch (err) {
@@ -54,6 +58,8 @@ export default function EditUser() {
       } else {
         setError(err.response?.data?.message || "Erro ao atualizar usuário");
       }
+    } finally {
+      hideLoader();
     }
   };
 

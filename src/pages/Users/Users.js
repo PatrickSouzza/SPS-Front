@@ -3,15 +3,20 @@ import { useNavigate } from "react-router-dom";
 import UserService from "../../services/UserService";
 import HomeButton from "../../components/ButtonHome";
 import "./Users.css";
+import { useContext } from "react";
+import { LoaderContext } from "../../contexts/LoaderContext";
 
 export default function Users() {
   const [users, setUsers] = useState([]);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { showLoader, hideLoader } = useContext(LoaderContext);
+
 
   useEffect(() => {
     async function loadUsers() {
       setError("");
+      showLoader();
       try {
         const data = await UserService.list();
         setUsers(data);
@@ -22,6 +27,8 @@ export default function Users() {
         } else {
           setError("Erro ao carregar usuários.");
         }
+      } finally {
+        hideLoader();
       }
     }
 
